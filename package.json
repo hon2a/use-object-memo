@@ -1,6 +1,6 @@
 {
   "name": "@wisersolutions/use-object-memo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Memoizes object data, providing a reference that gets updated only when the data changes.",
   "repository": {
     "type": "git",
