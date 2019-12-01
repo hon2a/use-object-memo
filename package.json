@@ -1,0 +1,47 @@
+{
+  "name": "@wisersolutions/use-object-memo",
+  "version": "0.0.0",
+  "description": "Memoizes object data, providing a reference that gets updated only when the data changes.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hon2a/use-object-memo"
+  },
+  "author": "Jan Konopásek",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "files": [
+    "/es",
+    "/lib"
+  ],
+  "scripts": {
+    "format": "prettier --write \"src/**/*.js\" --loglevel warn",
+    "lint": "eslint -f @wisersolutions/eslint-formatter-idea ./src",
+    "test": "jest 'src/'",
+    "build": "transpile-js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@wisersolutions/eslint-config": "^2.0.1",
+    "@wisersolutions/eslint-formatter-idea": "^1.0.5",
+    "@wisersolutions/transpile-js": "^0.0.17",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-jest": "^23.0.5",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-test-renderer": "^16.12.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.7.4",
+    "core-js": "^3.4.5",
+    "lodash.isequal": "^4.5.0"
+  },
+  "peerDependencies": {
+    "react": "^16"
+  }
+}
