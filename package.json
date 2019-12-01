@@ -1,5 +1,5 @@
 {
-  "name": "@wisersolutions/use-object-memo",
+  "name": "@hon2a/use-object-memo",
   "version": "1.0.0",
   "description": "Memoizes object data, providing a reference that gets updated only when the data changes.",
   "repository": {
