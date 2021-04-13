@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
+import isEqual from 'lodash.isequal'
 
 import { useObjectMemo } from './index'
 
@@ -49,5 +50,23 @@ describe('useObjectMemo', () => {
     const newestValue = { foo: 'bar' }
     rendered.rerender({ value: newestValue })
     expect(rendered.result.current).toBe(newestValue)
+  })
+
+  it('supports custom equality check', () => {
+    const pickRelevantProps = ({ a, b }) => ({ a, b })
+    const customIsEqual = (a, b) => isEqual(pickRelevantProps(a), pickRelevantProps(b))
+    const initialValue = { a: 'a', b: { x: 'x', y: 'y' }, c: 'c' }
+    const rendered = renderHook(({ value }) => useObjectMemo(value, customIsEqual), {
+      initialProps: { value: initialValue }
+    })
+
+    rendered.rerender({ value: initialValue })
+    rendered.rerender({ value: { ...initialValue, b: { x: 'x', y: 'y' } } })
+    rendered.rerender({ value: { ...initialValue, c: 'BAM!' } })
+    expect(rendered.result.current).toBe(initialValue)
+
+    const newValue = { ...initialValue, b: { x: 'x', y: 'Z!' } }
+    rendered.rerender({ value: newValue })
+    expect(rendered.result.current).toBe(newValue)
   })
 })
