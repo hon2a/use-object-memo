@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import isEqual from 'lodash.isequal'
+import isDeepEqual from 'lodash.isequal'
 
-export function useObjectMemo(value) {
-  const [memoizedValue, setMemoizedValue] = useState(value)
+export function useObjectMemo(value, isEqual = isDeepEqual) {
+  const [memo, setMemo] = useState(value)
   useEffect(() => {
-    if (!isEqual(value, memoizedValue)) setMemoizedValue(value)
+    if (!isEqual(value, memo)) setMemo(value)
   }, [value])
-  return memoizedValue
+  return memo
 }
